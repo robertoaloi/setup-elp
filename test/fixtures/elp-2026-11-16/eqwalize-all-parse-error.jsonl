@@ -1,0 +1,2 @@
+{"path":"src/pm_demo_lint.erl","line":2,"char":null,"code":"ELP","severity":"error","name":"ELP","original":null,"replacement":null,"description":"can't find include file \"does_not_exist.hrl\"","docPath":null}
+Eqwalizer parse errors found.

@@ -1,0 +1,16 @@
+[0m[1m[38;5;9merror[0m[1m: redundant_fixme (See https://fb.me/eqwalizer_errors#redundant_fixme)[0m
+   [0m[38;5;33m┌─[0m src/meck_code.erl:76:5
+   [0m[38;5;33m│[0m
+[0m[38;5;33m76[0m [0m[38;5;33m│[0m     [0m[38;5;9m% eqwalizer:ignore[0m incompatible_types
+   [0m[38;5;33m│[0m     [0m[38;5;9m^^^^^^^^^^^^^^^^^^[0m [0m[38;5;9mredundant fixme[0m
+
+[0m[1m[38;5;9merror[0m[1m: incompatible_types (See https://fb.me/eqwalizer_errors#incompatible_types)[0m
+  [0m[38;5;33m┌─[0m src/pm_demo_eqwalizer.erl:4:8
+  [0m[38;5;33m│[0m
+[0m[38;5;33m4[0m [0m[38;5;33m│[0m a() -> [0m[38;5;9merror[0m.
+  [0m[38;5;33m│[0m        [0m[38;5;9m^^^^^[0m [0m[38;5;9m'error'.
+Expression has type:   'error'
+Context expected type: 'ok'[0m
+
+[0m[36m2 ERRORS[0m
+Eqwalizer errors found.

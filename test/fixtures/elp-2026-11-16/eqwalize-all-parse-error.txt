@@ -1,0 +1,7 @@
+[0m[1m[38;5;9merror[0m[1m: parse_error[0m
+  [0m[38;5;33m┌─[0m src/pm_demo_lint.erl:2:10
+  [0m[38;5;33m│[0m
+[0m[38;5;33m2[0m [0m[38;5;33m│[0m -include([0m[38;5;9m"does_not_exist.hrl"[0m).
+  [0m[38;5;33m│[0m          [0m[38;5;9m^^^^^^^^^^^^^^^^^^^^[0m [0m[38;5;9mcan't find include file "does_not_exist.hrl"[0m
+
+Eqwalizer parse errors found.

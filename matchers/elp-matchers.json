@@ -1,0 +1,130 @@
+{
+  "problemMatcher": [
+    {
+      "owner": "elp-json-error",
+      "severity": "error",
+      "pattern": [
+        {
+          "regexp": "^\\{\"path\":\"((?:[^\"\\\\]|\\\\.)+)\",\"line\":(\\d+),(?:\"char\":(\\d+),)?.*?\"severity\":\"(?:error)\",.*?\"description\":\"(?:```[^\"\\\\]*(?:\\\\n)+)?((?:[^\"\\\\]|\\\\.)+)\"",
+          "file": 1,
+          "line": 2,
+          "column": 3,
+          "message": 4
+        }
+      ]
+    },
+    {
+      "owner": "elp-json-warning",
+      "severity": "warning",
+      "pattern": [
+        {
+          "regexp": "^\\{\"path\":\"((?:[^\"\\\\]|\\\\.)+)\",\"line\":(\\d+),(?:\"char\":(\\d+),)?.*?\"severity\":\"(?:warning|autofix)\",.*?\"description\":\"(?:```[^\"\\\\]*(?:\\\\n)+)?((?:[^\"\\\\]|\\\\.)+)\"",
+          "file": 1,
+          "line": 2,
+          "column": 3,
+          "message": 4
+        }
+      ]
+    },
+    {
+      "owner": "elp-json-notice",
+      "severity": "notice",
+      "pattern": [
+        {
+          "regexp": "^\\{\"path\":\"((?:[^\"\\\\]|\\\\.)+)\",\"line\":(\\d+),(?:\"char\":(\\d+),)?.*?\"severity\":\"(?:advice|disabled|weak_warning|information)\",.*?\"description\":\"(?:```[^\"\\\\]*(?:\\\\n)+)?((?:[^\"\\\\]|\\\\.)+)\"",
+          "file": 1,
+          "line": 2,
+          "column": 3,
+          "message": 4
+        }
+      ]
+    },
+    {
+      "owner": "elp-text-error",
+      "severity": "error",
+      "pattern": [
+        {
+          "regexp": "^(\\S.*?):(\\d+):(\\d+)-\\d+:\\d+::\\[(?:Error)\\] (.+)$",
+          "file": 1,
+          "line": 2,
+          "column": 3,
+          "message": 4
+        }
+      ]
+    },
+    {
+      "owner": "elp-text-warning",
+      "severity": "warning",
+      "pattern": [
+        {
+          "regexp": "^(\\S.*?):(\\d+):(\\d+)-\\d+:\\d+::\\[(?:Warning)\\] (.+)$",
+          "file": 1,
+          "line": 2,
+          "column": 3,
+          "message": 4
+        }
+      ]
+    },
+    {
+      "owner": "elp-text-notice",
+      "severity": "notice",
+      "pattern": [
+        {
+          "regexp": "^(\\S.*?):(\\d+):(\\d+)-\\d+:\\d+::\\[(?:WeakWarning|Information)\\] (.+)$",
+          "file": 1,
+          "line": 2,
+          "column": 3,
+          "message": 4
+        }
+      ]
+    },
+    {
+      "owner": "elp-codespan-error",
+      "severity": "error",
+      "pattern": [
+        {
+          "regexp": "^(?:\\u001b\\[[0-9;]*m)*(?:error)(?:\\[[^\\]]*\\])?(?:\\u001b\\[[0-9;]*m)*: (?:\\u001b\\[[0-9;]*m)*(.+?)(?:\\u001b\\[[0-9;]*m)*$",
+          "message": 1
+        },
+        {
+          "regexp": "^\\s*(?:\\u001b\\[[0-9;]*m)*\\u250c\\u2500(?:\\u001b\\[[0-9;]*m)* (.+):(\\d+):(\\d+)(?:\\u001b\\[[0-9;]*m)*$",
+          "file": 1,
+          "line": 2,
+          "column": 3
+        }
+      ]
+    },
+    {
+      "owner": "elp-codespan-warning",
+      "severity": "warning",
+      "pattern": [
+        {
+          "regexp": "^(?:\\u001b\\[[0-9;]*m)*(?:warning)(?:\\[[^\\]]*\\])?(?:\\u001b\\[[0-9;]*m)*: (?:\\u001b\\[[0-9;]*m)*(.+?)(?:\\u001b\\[[0-9;]*m)*$",
+          "message": 1
+        },
+        {
+          "regexp": "^\\s*(?:\\u001b\\[[0-9;]*m)*\\u250c\\u2500(?:\\u001b\\[[0-9;]*m)* (.+):(\\d+):(\\d+)(?:\\u001b\\[[0-9;]*m)*$",
+          "file": 1,
+          "line": 2,
+          "column": 3
+        }
+      ]
+    },
+    {
+      "owner": "elp-codespan-notice",
+      "severity": "notice",
+      "pattern": [
+        {
+          "regexp": "^(?:\\u001b\\[[0-9;]*m)*(?:note|help)(?:\\[[^\\]]*\\])?(?:\\u001b\\[[0-9;]*m)*: (?:\\u001b\\[[0-9;]*m)*(.+?)(?:\\u001b\\[[0-9;]*m)*$",
+          "message": 1
+        },
+        {
+          "regexp": "^\\s*(?:\\u001b\\[[0-9;]*m)*\\u250c\\u2500(?:\\u001b\\[[0-9;]*m)* (.+):(\\d+):(\\d+)(?:\\u001b\\[[0-9;]*m)*$",
+          "file": 1,
+          "line": 2,
+          "column": 3
+        }
+      ]
+    }
+  ]
+}

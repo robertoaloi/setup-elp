@@ -1,0 +1,16 @@
+Diagnostics reported:
+src/meck_matcher.erl:77:22-77:30::[Warning] [W0089] Module 'hamcrest' is undefined.
+src/meck_matcher.erl:93:22-93:30::[Warning] [W0089] Module 'hamcrest' is undefined.
+test/meck_tests.erl:998:5-998:42::[Warning] [W0016] Function 'a/0' is deprecated.
+test/meck_tests.erl:1294:9-1294:27::[Warning] [W0016] Function 'a/0' is deprecated.
+test/meck_tests.erl:1043:5-1043:42::[Warning] [W0016] Function 'a/0' is deprecated.
+test/meck_tests.erl:1072:9-1072:27::[Warning] [W0016] Function 'a/0' is deprecated.
+test/meck_tests.erl:1223:5-1223:42::[Warning] [W0016] Function 'a/0' is deprecated.
+test/meck_tests.erl:933:5-933:42::[Warning] [W0016] Function 'a/0' is deprecated.
+test/meck_tests.erl:1017:5-1017:42::[Warning] [W0016] Function 'a/0' is deprecated.
+test/meck_tests.erl:1277:27-1278:61::[Warning] [W0016] Function 'a/0' is deprecated.
+test/include/cover_test.hrl:1:1-1:10::[Warning] [W0093] No file includes this header.
+src/pm_demo_lint.erl:5:8-5:44::[WeakWarning] [W0066] lists:map/2 call can be replaced with a list comprehension.
+src/pm_demo_lint.erl:5:18-5:38::[Information] [W0071] A reference to `fun foo/1` can be taken directly.
+src/pm_demo_lint.erl:2:10-2:30::[Error] [E1516] can't find include file "does_not_exist.hrl"
+Errors found

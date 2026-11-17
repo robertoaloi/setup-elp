@@ -11,7 +11,7 @@
     "format": "prettier src/**/*.js --write && prettier test/**/*.js --write && prettier *.js --write",
     "lint": "npm run markdownlint && npm run yamllint && npm run eslint",
     "build-dist": "npm run clean-dist && npm install && npm run build && npm run format && npm run lint",
-    "test": "node test/setup-elp.test.js"
+    "test": "node --test test/matchers.test.js && node test/setup-elp.test.js"
   },
   "dependencies": {
     "@actions/core": "2.0.3",
