@@ -20,9 +20,54 @@ in the Erlang Language Platform repository mentioned above.
 
 The action supports the following inputs:
 
-| `with`        | Purpose
-|-              |-
-| `elp-version` | ELP version to use: a release tag (e.g. `2026-10-05`) or `latest` (default)
+| `with`             | Purpose
+|-                   |-
+| `elp-version`      | ELP version to use: a release tag (e.g. `2026-10-05`) or `latest` (default)
+| `problem-matchers` | Annotate ELP findings on pull requests: `true` (default) or `false`
+
+#### Problem matchers
+
+The action registers [problem matchers][problem-matchers] for ELP's output, so that findings
+reported by `elp lint` and `elp eqwalize-all` in later steps of the same job become annotations:
+they show up inline in the pull request's "Files changed" tab and in the workflow run's summary.
+No extra configuration is needed:
+
+```yaml
+- uses: erlef/setup-elp@main
+- run: elp lint --no-connect
+- run: elp eqwalize-all --no-connect --bail-on-error
+```
+
+Both ELP output formats are recognized: JSON lines (printed when standard output is not a terminal,
+as is the case in GitHub Actions, or with `--format json`) and the human-readable output printed to
+a terminal.
+
+| ELP severity                                                   | Annotation
+|-                                                               |-
+| `error` (all eqWAlizer findings)                               | error
+| `warning`                                                      | warning
+| `weak_warning`, `information` (`disabled`, `advice` in JSON)   | notice
+
+The annotation's message is ELP's description of the finding, which usually ends with a link to
+the documentation of the diagnostic (e.g. `.../erlang-error-index/w/W0016`). JSON output is not
+unescaped: line breaks and quotes in the description appear as `\n` and `\"`.
+
+Things to keep in mind:
+
+- GitHub shows at most 10 error, 10 warning and 10 notice annotations per step, and at most 50
+  annotations per job; all findings are still printed to the log
+- the file paths printed by ELP are relative to the project, so run `elp` from the root of the
+  repository for annotations to point at the right files
+- annotations do not change a step's outcome: use ELP's exit code (e.g. `--bail-on-error`)
+  to fail the job
+
+To opt out, use `problem-matchers: false`. To stop annotating findings from a given step on, run
+`echo "::remove-matcher owner=<owner>::"` for each matcher you no longer want: their owners are
+`elp-json-<severity>` (JSON output), `elp-text-<severity>` (human-readable `elp lint` output) and
+`elp-codespan-<severity>` (human-readable `elp eqwalize-all` output and parse errors), with
+`<severity>` one of `error`, `warning` or `notice`.
+
+[problem-matchers]: https://github.com/actions/toolkit/blob/main/docs/problem-matchers.md
 
 #### Architectures / platforms
 
