@@ -9,6 +9,12 @@ inputs:
     description: The ELP version to use (a release tag, e.g. 2026-10-05, or latest)
     required: false
     default: latest
+  problem-matchers:
+    description: >-
+      Register problem matchers that turn `elp lint` and `elp eqwalize-all` findings
+      into annotations (true or false)
+    required: false
+    default: true
 runs:
   using: node20
   main: dist/index.js

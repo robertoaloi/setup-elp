@@ -56,3 +56,11 @@ jobs:
           elp-version: '2024-06-07'
 
       - run: elp version
+
+      - name: Use erlef/setup-elp without problem matchers
+        uses: ./
+        with:
+          elp-version: '2024-06-07'
+          problem-matchers: false
+
+      - run: elp version

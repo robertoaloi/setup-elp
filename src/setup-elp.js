@@ -7,8 +7,10 @@ const path = require('path')
 async function main() {
   prepareLocal()
   const elpVersion = getInput('elp-version', false) || 'latest'
+  const problemMatchers = problemMatchersEnabled()
   assertArchsPlatforms()
   await installElp(elpVersion)
+  maybeEnableProblemMatchers(problemMatchers)
 }
 
 main().catch((error) => {
@@ -38,6 +40,22 @@ async function installElp(elpVersion) {
   core.addPath(runnerToolPath)
 
   reportInstalledELPVersion()
+}
+
+function problemMatchersEnabled() {
+  const name = 'problem-matchers'
+  // The input is empty when not running from a workflow (e.g. `npm run test`), where the default
+  // in action.yml does not apply
+  return getInput(name, false) === '' || core.getBooleanInput(name)
+}
+
+// Problem matchers turn `elp lint` and `elp eqwalize-all` output, in any later step of the job,
+// into annotations. path.join with a static string lets ncc find the JSON file and copy it to dist/
+function maybeEnableProblemMatchers(enabled) {
+  if (enabled) {
+    const matchers = path.join(`${__dirname}/../matchers/elp-matchers.json`)
+    core.info(`::add-matcher::${matchers}`)
+  }
 }
 
 function semverFromELPVersion(elpVersion) {
