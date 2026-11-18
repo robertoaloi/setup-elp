@@ -23,6 +23,23 @@ The action supports the following inputs:
 | `with`        | Purpose
 |-              |-
 | `elp-version` | ELP version to use: a release tag (e.g. `2026-10-05`) or `latest` (default)
+| `elp-tarball` | Path or URL of an ELP `.tar.gz` (with `elp` at its root) to install instead of a release, e.g. a build of an unreleased change
+
+#### Annotations
+
+Pass `--format github` to `elp lint` and `elp eqwalize-all` so that each finding becomes an
+[annotation][workflow-commands]: it shows up inline in the pull request's "Files changed" tab and
+in the workflow run's summary, with the diagnostic code as its title and ELP's full message:
+
+```yaml
+- uses: erlef/setup-elp@main
+- run: elp lint --no-connect --format github
+- run: elp eqwalize-all --no-connect --format github --bail-on-error
+```
+
+`--format github` requires an ELP version that supports it.
+
+[workflow-commands]: https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-commands
 
 #### Architectures / platforms
 
