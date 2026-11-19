@@ -35,24 +35,27 @@ jobs:
 
       - uses: erlef/setup-beam@v1
         with:
-          otp-version: '25.3'
+          otp-version: '29.1'
 
       - run: npm run test
 
   action:
-    name: Action CI
+    name: Action CI (Erlang/OTP ${{matrix.otp}})
     runs-on: ubuntu-24.04
+    strategy:
+      matrix:
+        otp: ['27.3', '28.5', '29.1']
     steps:
       - uses: actions/checkout@v4
 
       - uses: erlef/setup-beam@v1
         with:
-          otp-version: '25.3'
+          otp-version: ${{matrix.otp}}
 
       - name: Use erlef/setup-elp
         id: setup-elp
         uses: ./
         with:
-          elp-version: '2024-06-07'
+          elp-version: '2026-11-19'
 
       - run: elp version
