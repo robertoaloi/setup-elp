@@ -5,16 +5,40 @@
 
 ## The action
 
-`setup-elp` allows you to type check your Erlang code, in your CI pipelines, using
-[eqWAlizer](https://github.com/WhatsApp/eqwalizer), with
-[Erlang Language Platform](https://github.com/WhatsApp/erlang-language-platform).
+`setup-elp` installs [ELP (Erlang Language Platform)][elp] in your GitHub Actions workflows, so
+you can lint your Erlang code with `elp lint` and type check it with
+[eqWAlizer][eqwalizer] (`elp eqwalize-all`), which ships as part of ELP.
+
+[elp]: https://github.com/WhatsApp/erlang-language-platform
+[eqwalizer]: https://whatsapp.github.io/erlang-language-platform/docs/eqwalizer/reference/
 
 ### Usage
 
-See [action.yml](action.yml) for the action's specification.
+ELP is built for specific Erlang/OTP versions, and the action downloads the build matching the
+`<major>.<minor>` Erlang/OTP version on the runner, so set up Erlang/OTP first (e.g. with
+[`erlef/setup-beam`](https://github.com/erlef/setup-beam)):
 
-In your CI pipelines, use it considering CLI `elp` is available as an executable, as specified
-in the Erlang Language Platform repository mentioned above.
+```yaml
+- uses: erlef/setup-beam@v1
+  with:
+    otp-version: "28.5"
+    rebar3-version: "3"
+- uses: erlef/setup-elp@main
+  with:
+    elp-version: "2026-10-14"
+- run: elp lint --no-connect
+- run: elp eqwalize-all --no-connect --bail-on-error
+```
+
+Each [ELP release](https://github.com/WhatsApp/erlang-language-platform/releases) lists the
+Erlang/OTP versions it was built for in its assets: the step fails if the release has no build for
+the Erlang/OTP version on the runner.
+
+See [action.yml](action.yml) for the action's specification, and the
+[ELP documentation][elp-gha] for a complete workflow, how to pick versions, and how to run ELP
+in a job matrix.
+
+[elp-gha]: https://whatsapp.github.io/erlang-language-platform/docs/get-started/github-actions/
 
 #### Inputs
 
