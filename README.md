@@ -23,7 +23,7 @@ ELP is built for specific Erlang/OTP versions, and the action downloads the buil
   with:
     otp-version: "28.5"
     rebar3-version: "3"
-- uses: erlef/setup-elp@main
+- uses: erlef/setup-elp@v1
   with:
     elp-version: "2026-10-14"
 - run: elp lint --no-connect
@@ -33,6 +33,9 @@ ELP is built for specific Erlang/OTP versions, and the action downloads the buil
 Each [ELP release](https://github.com/WhatsApp/erlang-language-platform/releases) lists the
 Erlang/OTP versions it was built for in its assets: the step fails if the release has no build for
 the Erlang/OTP version on the runner.
+
+`@v1` follows the latest `1.x.y` release of the action. To make your workflow fully
+reproducible, pin a release tag (e.g. `@v1.0.0`) or a commit SHA instead.
 
 See [action.yml](action.yml) for the action's specification, and the
 [ELP documentation][elp-gha] for a complete workflow, how to pick versions, and how to run ELP
